@@ -1,8 +1,6 @@
 package carrinho;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
@@ -10,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import calculadora.Calculadora;
 import produto.Produto;
 import produto.ProdutoNaoEncontradoException;
 
@@ -57,9 +54,18 @@ public class CarrinhoTest {
 		assertEquals(tamInicial, tamFinal - 1);		
 	}
 	
-	@DisplayName("Testa remover item do carrinho")
+	@DisplayName("Testa remover item que está no carrinho")
 	@Test
-	public void testRemoveItem() throws ProdutoNaoEncontradoException {
+	public void testRemoveItem1() throws ProdutoNaoEncontradoException {		
+		int tamInicial = carrinho.getQtdeItems();
+		carrinho.removeItem(arroz);
+		int tamFinal = carrinho.getQtdeItems();		
+		assertEquals(tamInicial, tamFinal + 1);			
+	}
+	
+	@DisplayName("Testa remover item que não está no carrinho")
+	@Test
+	public void testRemoveItem2() throws ProdutoNaoEncontradoException {
 		try {
 			int tamInicial = carrinho.getQtdeItems();
 			carrinho.removeItem(farinha);
